@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电玩城游戏币兑换</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 18px; /* 增大字体大小 */
+        }
+
+        label {
+            display: inline-block;
+            width: 200px; /* 适当增加宽度，让文本和输入框间隔更合适 */
+        }
+
+        input {
+            margin-bottom: 15px;
+            padding: 10px; /* 增大输入框内边距，使其看起来更大 */
+            width: 200px; /* 增加输入框宽度 */
+            font-size: 18px; /* 增大输入框内字体大小 */
+        }
+
+        button {
+            padding: 10px 20px; /* 增大按钮的内边距，使其更大 */
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px; /* 适当增大按钮圆角半径 */
+            cursor: pointer;
+            font-size: 18px; /* 增大按钮文字大小 */
+        }
+
+        img {
+            width: 300px; /* 增大图片宽度 */
+            height: 300px; /* 增大图片高度 */
+            margin-bottom: 15px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>电玩城游戏币兑换</h1>
+    <!-- 假设这里设定了1元可以兑换10个游戏币，你可按需修改兑换比例 -->
+    <p>兑换规则：1元可兑换2个游戏币哦~</p>
+    <label for="amount">请输入您要兑换的金额（元）：</label>
+    <input type="number" id="amount" placeholder="请输入金额">
+    <button onclick="calculateCoins()">计算可兑换游戏币数量</button>
+    <div id="coin-result"></div>
+    <button onclick="showPaymentPage()" id="pay-button" style="display:none">兑换游戏币</button>
+    <img id="payment-img" src="file:///storage/emulated/0/Download/666.jpg" alt="支付提示图片">
+    <button onclick="payForCoins()" id="confirm-pay-button" style="display:none">确认支付</button>
+    <div id="payment-result"></div>
+
+        <button onclick="hideAllAndShowFinalImage()" id="finalButton" style="display:none">完成</button>
+    </div>
+    <img id="finalImage" src="file:///storage/emulated/0/Download/777.jpg" alt="最终图片">
+    
+    
+    
+    <script>
+        function calculateCoins() {
+            // 获取输入的兑换金额
+            var amount = document.getElementById('amount').value;
+            if (amount === "") {
+                alert("请输入兑换金额呀！");
+                return;
+            }
+            // 这里假设兑换比例是1元换10个币，可根据实际调整
+            var exchangeRate =2;
+            var coins = amount * exchangeRate;
+            document.getElementById('coin-result').innerHTML = "您输入的金额可兑换 " + coins + " 个游戏币，确认无误后点击下方按钮进行支付哦。";
+            document.getElementById('pay-button').style.display = "block";
+        }
+
+        function showPaymentPage() {
+            document.getElementById('payment-img').style.display = "block";
+            document.getElementById('confirm-pay-button').style.display = "block";
+        }
+
+        function payForCoins() {
+            // 这里模拟支付成功，实际中要对接支付接口判断支付状态
+            var amount = document.getElementById('amount').value;
+            if (amount === "") {
+                alert("请输入兑换金额呀！");
+                return;
+            }
+            var exchangeRate = 2;
+            var coins = amount * exchangeRate;
+            document.getElementById('payment-result').innerHTML = "支付成功！您已成功兑换了 " + coins + " 个游戏币，祝您玩得开心！";
+            document.getElementById('payment-img').style.display = "none";
+            document.getElementById('confirm-pay-button').style.display = "none";
+            document.getElementById('pay-button').style.display = "none";
+            document.getElementById('amount').value = "";
+            document.getElementById('coin-result').innerHTML = "";
+        }
+    </script>
+</body>
+
+</html>
